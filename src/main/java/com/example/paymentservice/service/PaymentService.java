@@ -49,6 +49,7 @@ public class PaymentService {
             logger.info("Payment saved successfully");
             return paymentToSave.getPaymentId();
         } catch (Exception e) {
+            logger.warn("Saving of Payment failed", e);
             throw new PaymentSavingException();
         }
     }
