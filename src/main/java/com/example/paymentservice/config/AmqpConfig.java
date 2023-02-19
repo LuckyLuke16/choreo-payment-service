@@ -27,7 +27,8 @@ public class AmqpConfig {
 
     @Bean
     Binding fulfillPaymentBinding(Queue fulfillPaymentQueue, TopicExchange exchange) {
-        return BindingBuilder.bind(fulfillPaymentQueue).to(exchange).with("stock.updated");
+        return BindingBuilder.bind(fulfillPaymentQueue)
+            .to(exchange).with("stock.updated");
     }
 
     @Bean
