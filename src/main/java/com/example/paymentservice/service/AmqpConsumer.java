@@ -31,8 +31,10 @@ public class AmqpConsumer {
     @RabbitListener(queues = "#{fulfillPaymentQueue.name}")
     @SendTo("#{exchange.name}/payment.succeeded")
     public Message<OrderDTO> processOrder(Message<OrderDTO> orderDetailsMessage) {
-        String userId = orderDetailsMessage.getHeaders().get("userId", String.class);
-        String correlationId = orderDetailsMessage.getHeaders().get("correlationId", String.class);
+        String userId = orderDetailsMessage.getHeaders()
+            .get("userId", String.class);
+        String correlationId = orderDetailsMessage.getHeaders()
+            .get("correlationId", String.class);
         OrderDTO orderDetails = orderDetailsMessage.getPayload();
         String paymentMethod = orderDetails.getPaymentMethod();
         List<ItemDetailDTO> itemsToPay = orderDetails.getItemsToPay();
